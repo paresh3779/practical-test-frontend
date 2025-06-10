@@ -1,0 +1,131 @@
+<div class="row">
+    <h2 class="text-center">Register</h2>
+    @if (showSuccess) {
+        <p class="col-sm-8 offset-2 alert alert-success" >
+            {{ successMessages.userCreated }}
+            <a routerLink="../login" >Login</a>
+        </p>
+    }
+    
+</div>
+<div class="row">
+    <div class="col-sm-8 offset-2">
+        <form class="mb-2 mt-2" [formGroup]="registerForm" (ngSubmit)="register()">
+            <div class="form-group row">
+                <label for="first_name" class="col-sm-3 col-form-label required">First Name</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" id="first_name" placeholder="First Name"
+                        formControlName="first_name" [ngClass]="{'is-invalid': submitted && userMeta.first_name.errors }" />
+                    <div *ngIf="submitted && userMeta.first_name.errors" class="invalid-feedback">
+                        <div *ngIf="userMeta.first_name.errors?.required">
+                            {{ errorMessages.firstNameRequired }}
+                        </div>
+                        <div *ngIf="userMeta.first_name.errors?.serverError">
+                            {{ userMeta.first_name.errors.serverError }}
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="last_name" class="col-sm-3 col-form-label required">Last Name</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" id="last_name" placeholder="Last Name" formControlName="last_name" 
+                    [ngClass]="{'is-invalid': submitted && userMeta.last_name.errors }"/>
+                    <div *ngIf="submitted && userMeta.last_name.errors" class="invalid-feedback">
+                        <div *ngIf="userMeta.last_name.errors?.required">
+                            {{ errorMessages.lastNameRequired }}
+                        </div>
+                        <div *ngIf="userMeta.last_name.errors?.serverError">
+                            {{ userMeta.last_name.errors.serverError }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="email" class="col-sm-3 col-form-label required">Email Address</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" id="email" placeholder="Email Address"
+                        formControlName="email" [ngClass]="{'is-invalid': submitted && userMeta.email.errors }" />
+                    <div *ngIf="submitted && userMeta.email.errors" class="invalid-feedback">
+                        <div *ngIf="userMeta.email.errors?.required">
+                            {{ errorMessages.emailRequired }}
+                        </div>
+                        <div *ngIf="userMeta.email.errors?.invalidEmail">
+                            {{ errorMessages.emailInvalid }}
+                        </div>
+                        <div *ngIf="userMeta.email.errors?.serverError">
+                            {{ userMeta.email.errors.serverError }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="phone_number" class="col-sm-3 col-form-label required">Phone Number</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" id="phone_number" placeholder="Phone Number"
+                        formControlName="phone_number" [ngClass]="{'is-invalid': submitted && userMeta.phone_number.errors }"  />
+                    <div *ngIf="submitted && userMeta.phone_number.errors" class="invalid-feedback">
+                        <div *ngIf="userMeta.phone_number.errors?.required">
+                            {{ errorMessages.phoneRequired }}
+                        </div>
+                        <div *ngIf="userMeta.phone_number.errors?.invalidPhone">
+                            {{ errorMessages.phoneInvalid }}
+                        </div>
+                        <div *ngIf="userMeta.phone_number.errors?.serverError">
+                            {{ userMeta.phone_number.errors.serverError }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="password" class="col-sm-3 col-form-label required">Password</label>
+                <div class="col-sm-9">
+                    <input type="password" class="form-control" id="password" placeholder="Password"
+                        formControlName="password" [ngClass]="{'is-invalid': submitted && userMeta.password.errors }" />
+                    <div class="field-note text-primary-emphasis">please choose a password that is 8
+                            characters long and include at least one
+                            number, one special character and one uppercase letter.
+                    </div>
+                    <div *ngIf="submitted && userMeta.password.errors" class="invalid-feedback">
+                        <div *ngIf="userMeta.password.errors?.required">
+                            {{ errorMessages.passwordRequired }}
+                        </div>
+                        <div *ngIf="userMeta.password.errors?.minlength">
+                            {{ errorMessages.passwordLengthNotMatch }}
+                        </div>
+                        <div *ngIf="userMeta.password.errors?.invalidPassword">
+                            {{ errorMessages.invalidPassword }}
+                        </div>
+                        <div *ngIf="userMeta.password.errors?.serverError">
+                            {{ userMeta.password.errors.serverError }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="repeat_password" class="col-sm-3 col-form-label required">Repeat Password</label>
+                <div class="col-sm-9">
+                    <input type="password" class="form-control" id="repeat_password" placeholder="Repeat Password"
+                        formControlName="repeat_password" [ngClass]="{'is-invalid': submitted && userMeta.repeat_password.errors }" />
+                    <div *ngIf="submitted && userMeta.repeat_password.errors" class="invalid-feedback">
+                        <div *ngIf="userMeta.repeat_password.errors?.required">
+                            {{ errorMessages.repeatPasswordRequired }}
+                        </div>
+                        <div *ngIf="userMeta.repeat_password.errors?.passwordsNotMatch">
+                            {{ errorMessages.passwordNotMatch }}
+                        </div>
+                        <div *ngIf="userMeta.repeat_password.errors?.serverError">
+                            {{ userMeta.repeat_password.errors.serverError }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-sm-9">
+                    <button type="submit" class="btn btn-primary" [disabled]="registerLoader">Register</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
