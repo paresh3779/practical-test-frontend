@@ -12,7 +12,12 @@ export const Messages = {
             passwordLengthNotMatch: "Password must be minimm 8 characters long.",
             invalidPassword: "Password does not match criteria.",
             passwordNotMatch: "Password and Repeat Password must match.",
+            emailExists: "Email Address already exists.",
+        },
+        successMessages : {
+            userCreated: "Registered successfully. Please Login.",
         }
         
-    }
+    },
+    insertDataExceptionError: "Something wrong with data store.",
 }

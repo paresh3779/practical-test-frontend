@@ -1,5 +1,12 @@
 <div class="row">
     <h2 class="text-center">Register</h2>
+    @if (showSuccess) {
+        <p class="col-sm-8 offset-2 alert alert-success" >
+            {{ successMessages.userCreated }}
+            <a routerLink="../login" >Login</a>
+        </p>
+    }
+    
 </div>
 <div class="row">
     <div class="col-sm-8 offset-2">
@@ -9,9 +16,12 @@
                 <div class="col-sm-9">
                     <input type="text" class="form-control" id="first_name" placeholder="First Name"
                         formControlName="first_name" [ngClass]="{'is-invalid': submitted && userMeta.first_name.errors }" />
-                    <div *ngIf="submitted && userMeta.last_name.errors" class="invalid-feedback">
-                        <div *ngIf="userMeta.last_name.errors?.required">
+                    <div *ngIf="submitted && userMeta.first_name.errors" class="invalid-feedback">
+                        <div *ngIf="userMeta.first_name.errors?.required">
                             {{ errorMessages.firstNameRequired }}
+                        </div>
+                        <div *ngIf="userMeta.first_name.errors?.serverError">
+                            {{ userMeta.first_name.errors.serverError }}
                         </div>
                         
                     </div>
@@ -25,6 +35,9 @@
                     <div *ngIf="submitted && userMeta.last_name.errors" class="invalid-feedback">
                         <div *ngIf="userMeta.last_name.errors?.required">
                             {{ errorMessages.lastNameRequired }}
+                        </div>
+                        <div *ngIf="userMeta.last_name.errors?.serverError">
+                            {{ userMeta.last_name.errors.serverError }}
                         </div>
                     </div>
                 </div>
@@ -41,6 +54,9 @@
                         <div *ngIf="userMeta.email.errors?.invalidEmail">
                             {{ errorMessages.emailInvalid }}
                         </div>
+                        <div *ngIf="userMeta.email.errors?.serverError">
+                            {{ userMeta.email.errors.serverError }}
+                        </div>
                     </div>
                 </div>
             </div>
@@ -55,6 +71,9 @@
                         </div>
                         <div *ngIf="userMeta.phone_number.errors?.invalidPhone">
                             {{ errorMessages.phoneInvalid }}
+                        </div>
+                        <div *ngIf="userMeta.phone_number.errors?.serverError">
+                            {{ userMeta.phone_number.errors.serverError }}
                         </div>
                     </div>
                 </div>
@@ -78,6 +97,9 @@
                         <div *ngIf="userMeta.password.errors?.invalidPassword">
                             {{ errorMessages.invalidPassword }}
                         </div>
+                        <div *ngIf="userMeta.password.errors?.serverError">
+                            {{ userMeta.password.errors.serverError }}
+                        </div>
                     </div>
                 </div>
             </div>
@@ -93,13 +115,15 @@
                         <div *ngIf="userMeta.repeat_password.errors?.passwordsNotMatch">
                             {{ errorMessages.passwordNotMatch }}
                         </div>
-                        
+                        <div *ngIf="userMeta.repeat_password.errors?.serverError">
+                            {{ userMeta.repeat_password.errors.serverError }}
+                        </div>
                     </div>
                 </div>
             </div>
             <div class="form-group row">
                 <div class="col-sm-9">
-                    <button type="submit" class="btn btn-primary">Register</button>
+                    <button type="submit" class="btn btn-primary" [disabled]="registerLoader">Register</button>
                 </div>
             </div>
         </form>
