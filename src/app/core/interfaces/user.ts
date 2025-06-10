@@ -1,12 +1,30 @@
 import { IResponse } from "./common";
 
+export interface IUser {
+    id: number;
+    first_name: string;
+    last_name: string;
+    email: string;
+    phone_number: number;
+}
 export interface IUserRequest {
-    fisrt_name: string;
+    first_name: string;
     last_name: string;
     email: string;
     phone_number: number;
     password: string;
 }
 
-export interface IUserResponse extends IResponse{
+export interface IUserResponse extends IResponse {
+}
+
+export interface IUserLoginRequest {
+    email: string;
+    password: string;
+}
+
+export interface IUserLoginResponse extends IResponse {
+    access_token: string;
+    user_details: IUser;
+    expires_at: string;
 }

@@ -6,6 +6,7 @@ import { emailValidator, phoneValidator, passwordValidator, passwordMatchValidat
 import { IUserRequest, IUserResponse } from '../../core/interfaces';
 import { UserService } from '../../core/services/user.service';
 import { RouterLink } from '@angular/router';
+import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-user-register',
   standalone: true,
@@ -22,6 +23,7 @@ export class UserRegisterComponent implements OnInit {
   userRequestData!: IUserRequest;
   errorMessages = Messages.registerPage.errorMessages;
   successMessages = Messages.registerPage.successMessages;
+  subscription: Subscription;
 
   constructor(
     private fb: FormBuilder,
@@ -63,7 +65,7 @@ export class UserRegisterComponent implements OnInit {
               return;
             }
             this.registerLoader = true;
-            this.userService.userRegister(this.userRequestData).subscribe((response: IUserResponse) => {
+            this.subscription = this.userService.userRegister(this.userRequestData).subscribe((response: IUserResponse) => {
               this.registerLoader = false;
               if(response.success){
                 this.registerForm.reset();
@@ -88,6 +90,10 @@ export class UserRegisterComponent implements OnInit {
                 });
             }
         });
+    }
+
+    ngOnDestroy(){
+      this.subscription?.unsubscribe();
     }
 
 }

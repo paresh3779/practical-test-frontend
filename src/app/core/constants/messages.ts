@@ -13,11 +13,13 @@ export const Messages = {
             invalidPassword: "Password does not match criteria.",
             passwordNotMatch: "Password and Repeat Password must match.",
             emailExists: "Email Address already exists.",
+            invalidEmailOrPassword: "Invalid email or password.",
+            loginException: "Something went wrong with login process."
         },
         successMessages : {
             userCreated: "Registered successfully. Please Login.",
         }
         
     },
-    insertDataExceptionError: "Something wrong with data store.",
+    insertDataExceptionError: "Something went wrong with resgitration process.",
 }
