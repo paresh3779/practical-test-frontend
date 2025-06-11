@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IUser } from '../../core/interfaces';
+import { Permissions } from '../../core/constants';
 
 @Component({
   selector: 'app-profile',
@@ -8,6 +9,7 @@ import { IUser } from '../../core/interfaces';
 })
 export class ProfileComponent {
   userDetails: IUser;
+  permissions = Permissions;
   ngOnInit(): void {
     this.userDetails = JSON.parse(localStorage.getItem('user'));
   }

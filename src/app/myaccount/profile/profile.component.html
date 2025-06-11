@@ -11,7 +11,29 @@
                     <p><label>Last Name:</label> {{ userDetails.last_name }}</p>
                     <p><label>Email:</label> {{ userDetails.email }}</p>
                     <p><label>Phone:</label> {{ userDetails.phone_number }}</p>
-                    <p><label>Role:</label> User</p>
+
+                    @if(userDetails.roles.length > 0){
+                        <p><label>Roles:</label> 
+                            @for (role of userDetails.roles; track role.id; let last = $last) {
+                                {{ role.name }}
+                                @if(!$last){
+                                    ,
+                                }
+                            }
+                        </p>
+                    }
+                    
+                    @if(userDetails.permissions.length > 0){
+                        <p><label>Permissions:</label> 
+                            @for (permission of userDetails.permissions; track permission.id; let last = $last) {
+                                {{ permissions[permission.name] }}
+                                @if(!$last){
+                                    ,
+                                }
+                            }
+                        </p>
+                    }
+                    
                 </div>
             }
         </div>

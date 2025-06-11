@@ -1,4 +1,6 @@
 import { IResponse } from "./common";
+import { Permission } from "./permission";
+import { Role } from "./role";
 
 export interface IUser {
     id: number;
@@ -6,6 +8,8 @@ export interface IUser {
     last_name: string;
     email: string;
     phone_number: number;
+    permissions: Permission[];
+    roles: Role[];
 }
 export interface IUserRequest {
     first_name: string;

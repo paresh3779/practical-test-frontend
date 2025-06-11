@@ -10,7 +10,6 @@
          }
 
         if (password !== confirmPassword) {
-            console.log("20");
             control.get('repeat_password')?.setErrors({ passwordsNotMatch: true });
         }
         return null;
