@@ -1,6 +1,10 @@
 <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
       <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
         <li><a routerLink="./" class="nav-link px-2 link-secondary">Home</a></li>
+         @if(isAuthenticated){
+          <li><a routerLink="./my-account/dashboard" class="nav-link px-2 link-secondary">My Dashboard</a></li>
+          <li><a routerLink="./my-account/profile" class="nav-link px-2 link-secondary">My Profile</a></li>
+         }
       </ul>
 
       @if(isAuthenticated){

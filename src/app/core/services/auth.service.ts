@@ -19,9 +19,11 @@ export class AuthService {
   login(credentials: IUserLoginRequest): Observable<IUserLoginResponse> {
     return this.http.post(environment.apiUrl + ApiUrls.login, credentials).pipe(
       map((response: IUserLoginResponse) => {
-        localStorage.setItem('token', response.access_token);
-        localStorage.setItem('user', JSON.stringify(response.user_details));
-        this.isAuthenticatedSubject.next(true);
+        if(response.success){
+            localStorage.setItem('token', response.access_token);
+          localStorage.setItem('user', JSON.stringify(response.user_details));
+          this.isAuthenticatedSubject.next(true);
+        }
         return response;
       })
     );

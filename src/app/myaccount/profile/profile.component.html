@@ -1,0 +1,19 @@
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-8 offset-2">
+            <h2>Profile Details</h2>
+            @if(userDetails){
+                <hr>
+                <div class="profile-section">
+                    <p><label>First Name:</label> {{ userDetails.first_name }}</p>
+                    <p><label>Last Name:</label> {{ userDetails.last_name }}</p>
+                    <p><label>Email:</label> {{ userDetails.email }}</p>
+                    <p><label>Phone:</label> {{ userDetails.phone_number }}</p>
+                    <p><label>Role:</label> User</p>
+                </div>
+            }
+        </div>
+    </div>
+</div>
