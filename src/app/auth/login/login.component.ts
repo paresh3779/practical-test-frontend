@@ -22,6 +22,8 @@ export class LoginComponent implements OnInit {
   errorMessages = Messages.registerPage.errorMessages;
   successMessages = Messages.registerPage.successMessages;
   subscription: Subscription;
+  showErrorMessage = false;
+  errorMessage = "";
 
 
   constructor(
@@ -53,6 +55,7 @@ export class LoginComponent implements OnInit {
     /** User login form submission process */
     login() {
         this.submitted = true;
+        this.showErrorMessage = false;
         if (this.loginForm.valid) {
             this.loginRequestData = this.loginForm.getRawValue();
             if(this.loginLoader){
@@ -63,11 +66,14 @@ export class LoginComponent implements OnInit {
               this.loginLoader = false;
               if(response.success){
                 this.submitted = false;
-                this.route.navigate(['./']);
+                this.route.navigate(['/my-account/dashboard']);
                 
               }else {
                 if(response.errors){
                   this.populateServerErrors(response.errors);
+                }else {
+                  this.showErrorMessage = true;
+                  this.errorMessage = this.errorMessages[response.message];
                 }
               }
             })

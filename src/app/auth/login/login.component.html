@@ -3,6 +3,9 @@
 </div>
 <div class="row">
     <div class="col-sm-8 offset-2">
+        @if(showErrorMessage){
+            <p class="alert alert-danger">{{ errorMessage }} </p>
+        }
         <form class="mb-2 mt-2" [formGroup]="loginForm" (ngSubmit)="login()">
             <div class="form-group row">
                 <label for="email" class="col-sm-3 col-form-label required">Email Address</label>
